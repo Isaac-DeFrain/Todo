@@ -1,4 +1,3 @@
-(* TODO: command-line parsing *)
 open Todo
 open Core
 
@@ -55,3 +54,5 @@ let () =
   Command.run ~version:version
     ~build_info:"WIP"
     command
+
+(* TODO: interactive *)
