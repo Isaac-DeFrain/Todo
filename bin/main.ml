@@ -14,14 +14,9 @@ let add =
   Command.basic_spec
     ~summary:"Add items to the todo list/nMust provide a name"
     Command.Spec.(
-      empty
-      +> anon ("name" %: string)
-      (* +> anon ("due_date" %: int) *)
-    )
-    (fun n () ->
-      make (* cat dur prio notes dd time tags *) ~name:n ()
-    )
-  
+      empty +> anon ("name" %: string) (* +> anon ("due_date" %: int) *))
+    (fun n () -> make (* cat dur prio notes dd time tags *) ~name:n ())
+
 (* let update =
   Command.basic_spec
     ~summary:"Modify existing todo list items"
@@ -38,21 +33,14 @@ let add =
 let display =
   Command.basic_spec
     ~summary:"Supply a display mode to display the todo list"
-    Command.Spec.(
-      empty
-      +> anon ("mode" %: string)
-    )
-    (fun mode () ->
-      display_all ~mode:mode
-    )
+    Command.Spec.(empty +> anon ("mode" %: string))
+    (fun mode () -> display_all ~mode)
 
 let command =
-  Command.group ~summary:"Interact with todo list"
-    [ "add", add; "display", display ]
+  Command.group
+    ~summary:"Interact with todo list"
+    [("add", add); ("display", display)]
 
-let () =
-  Command.run ~version:version
-    ~build_info:"WIP"
-    command
+let () = Command.run ~version ~build_info:"WIP" command
 
 (* TODO: interactive *)
