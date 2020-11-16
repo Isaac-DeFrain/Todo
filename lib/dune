@@ -1,6 +1,6 @@
 (library
-  (inline_tests)
   (name todo)
+  (inline_tests)
   (libraries core yojson)
   (preprocess
     (pps ppx_sexp_conv ppx_inline_test)))

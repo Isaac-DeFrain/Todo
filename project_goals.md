@@ -13,3 +13,5 @@
 
 - store data in Json format and initialize todo list from file
 - authentication & user-specific files
+- read state from file at launch
+- save state to file at close
