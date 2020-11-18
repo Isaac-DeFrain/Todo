@@ -1,5 +1,6 @@
 open Todo
 open Core
+open Displays
 
 (* let spec =
   Command.Spec.(
@@ -12,7 +13,18 @@ open Core
 
 let add =
   Command.basic_spec
-    ~summary:"Add items to the todo list/nMust provide a name"
+    ~summary:"Add items to the todo list"
+    ~readme:(fun () ->
+      String.concat
+        ~sep:"\n"
+        [ "Must provide a name for your todo list item. Optionally, you can \
+           also provide:";
+          " - category";
+          " - duration";
+          " - priority level";
+          " - notes";
+          " - due date (YYYY-MM-DD)";
+          " - tags" ])
     Command.Spec.(
       empty +> anon ("name" %: string) (* +> anon ("due_date" %: int) *))
     (fun n () -> make (* cat dur prio notes dd time tags *) ~name:n ())
@@ -33,6 +45,11 @@ let add =
 let display =
   Command.basic_spec
     ~summary:"Supply a display mode to display the todo list"
+    ~readme:(fun () ->
+      "Currently there is support for 3 display MODEs:\n\
+      \ - basic\n\
+      \ - color\n\
+      \ - json\n")
     Command.Spec.(empty +> anon ("mode" %: string))
     (fun mode () -> display_all ~mode)
 
